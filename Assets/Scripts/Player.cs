@@ -43,21 +43,15 @@ public class Player : MonoBehaviour {
 			camPos = cameraa.transform.position;
 
 			rb.velocity = new Vector2 (speed, 0);
-			//transform.Translate (speed/10, 0, 0);
-
-			//this.gameObject.transform.Rotate(0, 0, 0);
-			//transform.localRotation  = Quaternion.Euler(0,0,0);
 
 			rb.rotation = 0;
 			rb.freezeRotation = true;
 
 		} else if (!isGrounded) {
 			if (isJumped) {
-				//this.gameObject.transform.Rotate (0, 0, Time.deltaTime * rotSpeed);
 				rb.angularVelocity = rotSpeed;
 			}
 			rb.velocity = new Vector2 (speed, rb.velocity.y);
-			//transform.Translate (speed/10, 0, 0);
 		}
 
 		if(Input.GetKey("space")){
