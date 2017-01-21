@@ -21,12 +21,11 @@ public class BlockSpawn : MonoBehaviour {
 
 			Camera camera = GetComponent<Camera>();
 			Vector3 p = camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, camera.nearClipPlane));
-
+			
 			p.x = Mathf.RoundToInt (p.x);
 			p.y = Mathf.RoundToInt (p.y);
-
+		 	
 			Instantiate (whatToSpawn, p, Quaternion.identity);
-
 		}
 	}
 
