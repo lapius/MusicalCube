@@ -38,14 +38,23 @@ public class Player : MonoBehaviour {
 
 		if (isGrounded) {
 
+			dist = transform.position.y - camPos.y;
+			cameraa.transform.position = new Vector3 (cameraa.transform.position.x, cameraa.transform.position.y + dist, cameraa.transform.position.z);
+			camPos = cameraa.transform.position;
+
 			rb.velocity = new Vector2 (speed, 0);
 			//transform.Translate (speed/10, 0, 0);
 
-			this.gameObject.transform.Rotate(0, 0, 0);
-			transform.localRotation  = Quaternion.Euler(0,0,0);
+			//this.gameObject.transform.Rotate(0, 0, 0);
+			//transform.localRotation  = Quaternion.Euler(0,0,0);
+
+			rb.rotation = 0;
+			rb.freezeRotation = true;
+
 		} else if (!isGrounded) {
 			if (isJumped) {
-				this.gameObject.transform.Rotate (0, 0, Time.deltaTime * rotSpeed);
+				//this.gameObject.transform.Rotate (0, 0, Time.deltaTime * rotSpeed);
+				rb.angularVelocity = rotSpeed;
 			}
 			rb.velocity = new Vector2 (speed, rb.velocity.y);
 			//transform.Translate (speed/10, 0, 0);
@@ -53,6 +62,7 @@ public class Player : MonoBehaviour {
 
 		if(Input.GetKey("space")){
 			if(isGrounded){
+				rb.freezeRotation = false;
 				isJumped = true;
 				rb.AddForce (transform.up * jumpForce * 100);
 			}
